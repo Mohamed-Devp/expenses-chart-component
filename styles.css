@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+    margin: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Primary colors */
+    --red-500: hsl(10, 79%, 65%);
+    --blue-300: hsl(186, 34%, 65%);
+    
+    /* Neutral */
+    --brown--950: hsl(25, 47%, 15%);
+    --brown-400: hsl(28, 10%, 53%);
+    --red-100: hsl(26, 66%, 93%);
+
+    /* Fonts */
+    --primary-font: "DM Sans";
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    font-family: var(--primary-font);
+    background-color: var(--red-100);
+}
+
+body > div {
+    width: min(450px, 90vw);
+}
+
+/* Balance section styles */
+.balance {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    border-radius: 14px;
+    padding: 0 24px;
+    margin-bottom: 24px;
+    background-color: var(--red-500);
+}
+
+.balance p {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 250%;
+    color: var(--red-100);
+}
+
+.balance span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.logo {
+    margin-left: auto;
+    width: 60px;
+    height: auto;
+}
+
+/* Dashboard styles */
+.dashboard {
+    height: 425px;
+    padding: 24px;
+    border-radius: 14px;
+    background-color: white;
+}
+
+.dashboard h2 {
+    color: var(--brown--950);
+}
+
+.chart {
+    display: flex;
+    align-items: center;
+    height: 65%;
+    border-bottom: 2px solid var(--red-100);
+}
+
+.bars {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    height: 55%;
+}
+
+.bar {
+    position: relative;
+    width: min(45px, 11%);
+    height: 0;
+    border-radius: 4px;
+    background-color: var(--red-500);
+    transition: all .2s ease-in;
+}
+
+.bar p {
+    position: absolute;
+    width: 100%;
+    left: 0; top: calc(100% + 10px);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--brown-400);
+    text-align: center;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+}
+
+.total {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 250%;
+    color: var(--brown-400);
+}
+
+.total span {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--brown--950);
+}
+
+.last-month {
+    align-self: flex-end;
+    padding-bottom: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
+    text-align: right;
+    color: var(--brown-400);
+}
+
+.last-month span {
+    font-weight: 700;
+    color: var(--brown--950);
+}
+
+@media screen and (max-width: 450px) {
+    .dashboard {
+        padding: 18px;
+    }
+
+    .dashboard h2 {
+        font-size: 1.4rem;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    body > div {
+        width: 95vw;
+    }
+}
