@@ -1,28 +1,16 @@
 const bars = document.querySelectorAll('.bar');
 
-async function drawGraph() {
-    // Fetch the data
-    const response = await fetch("./data.json");
-    
-    if (!response.ok) {
-        throw Error(`Error fetching the data: ${response.status}`);
-    }
-
-    const data = await response.json();
-    
-    // Update the graph bars
-    let maxAmount = 0;
-    for (let day of data) {
-        maxAmount = Math.max(maxAmount, day.amount);
-    }
-
+function drawGraph(amounts, maxAmount) {
+    // Get the current day
     const date = new Date();
-    const curDay = date.getDay();
-
+    const curDay = date.getDay() - 1;
+    
     let delay = 0.05; // Transition delay between each bar pairs
+
+    // Update the bar heights
     bars.forEach((bar, index) => {
         if (bar instanceof HTMLElement) {
-            const { amount } = data[index];
+            const { amount } = amounts[index];
 
             bar.style.height = `${amount / maxAmount * 100}%`;
             bar.style.transitionDelay = `${delay}s`;
@@ -36,11 +24,35 @@ async function drawGraph() {
     });
 }
 
-function onMount() {
-    drawGraph()
-        .catch(error => {
-            console.error(error);
-        });
+function updateAmount(bar, amount) {
+    if (!(bar instanceof HTMLElement)) {
+        return;
+    }
+
+    const amountHTML = `<div class="amount">$${amount}</div>`;
+    bar.innerHTML += amountHTML;
+}
+
+async function onMount() {
+    // Fetch the data
+    const response = await fetch("./data.json");
+    
+    if (!response.ok) {
+        throw Error(`Error fetching the data: ${response.status}`);
+    }
+
+    // Parse the data
+    const data = await response.json();
+    
+    let maxAmount = 0;
+    data.forEach((day, index) => {
+        maxAmount = Math.max(maxAmount, day.amount);
+
+        updateAmount(bars[index], day.amount);
+    });
+
+    // Draw the bar graph
+    drawGraph(data, maxAmount);
 }
 
 document.addEventListener('DOMContentLoaded', onMount);
