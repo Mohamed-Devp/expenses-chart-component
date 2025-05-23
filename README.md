@@ -31,8 +31,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [My Solution](https://www.frontendmentor.io/solutions/responsive-expenses-chart-2q9v1t-QRA)
+- Live Site URL: [Live demo](https://mohamed-devp.github.io/expenses-chart-component/)
 
 ## My process
 
